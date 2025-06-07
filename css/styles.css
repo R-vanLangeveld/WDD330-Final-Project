@@ -1,0 +1,184 @@
+:root {
+	--primary-color: #7a306c;
+	--secondary-color: #2e5077;
+	--accent-color: #ffc145;
+	--heading-font: "Roboto Slab", serif;
+	--border: var(--accent-color) thin solid;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	color: #eee;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+
+body {
+	background-color: #333;
+}
+
+header, footer {
+	padding: 10px;
+	background-color: var(--primary-color);
+}
+
+nav {
+	top: 0;
+	display: flex;
+	padding: 10px;
+	position: sticky;
+	background-color: #585858;
+	justify-content: space-evenly;
+}
+
+nav a {
+	font-size: large;
+	text-decoration-thickness: 2px;
+}
+
+nav a:visited {
+	text-decoration-color: crimson;
+}
+
+main {
+	margin: 1rem;
+}
+
+header, h1, h2, h3 {
+	font-family: var(--heading-font);
+}
+
+h2, h3 {
+	padding: 10px;
+	background-color: var(--secondary-color);
+}
+
+button, input {
+	height: 26px;
+	color: #000;
+	font-size: 1.2em;
+	border-radius: 0.5rem;
+	background-color: #f0f0f0;
+	border-color: var(--accent-color);
+}
+
+input {
+	width: 100%;
+	max-width: 245px;
+	font-size: 1.2em;
+}
+
+section {
+	overflow: hidden;
+	border-radius: 1rem;
+	margin-bottom: 20px;
+	border: var(--border);
+}
+
+div {
+	margin: 10px;
+}
+
+ul {
+	list-style: none;
+	margin-left: 10px;
+}
+
+li {
+	margin: 6px 0;
+	max-width: 193px;
+}
+
+i {
+	font-size: small;
+}
+
+figure {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+#searchBtn {
+	width: 68px;
+}
+
+#favoritesList {
+	margin: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(108px, 240px));
+}
+
+#favoritesList li {
+	display: grid;
+	max-width: 240px;
+	align-items: center;
+	grid-template-columns: 96px auto;
+}
+
+#varietyList, #formList, #typeList {
+	display: grid;
+	column-gap: 25px;
+	grid-template-columns: repeat(auto-fit, minmax(108px, 193px));
+}
+
+.mission {
+	margin: 0 0 10px 0;
+}
+
+.grid {
+	display: grid;
+}
+
+.hidden {
+	display: none;
+}
+
+@media screen and (min-width: 380px) {
+	
+	#pokeInfo {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(158px, auto));
+	}
+
+	#varieties, #forms, #addToFavList, figure {
+		grid-column: 1/3;
+	}
+}
+
+@media screen and (min-width: 586px) {
+	main {
+		display: grid;
+		gap: 10px 20px;
+		grid-template-columns: 2fr 1fr;
+	}
+
+	.mission {
+		grid-column: 1/3;
+	}
+
+	section {
+		margin: 0;
+	}
+
+	#pokeInfo {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(167px, auto));
+	}
+
+	#jokes {
+		top: 60px;
+		position: sticky;
+		max-height: min-content;
+	}
+
+	#varieties, #forms, #addToFavList {
+		grid-column: 1/3;
+	}
+}
+
+
+canvas {
+	background-color: #eee;
+}

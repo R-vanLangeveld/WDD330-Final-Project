@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2? family=Roboto&family=Roboto+Slab&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/home.js"></script>
+</head>
+
+<body>
+  <header class="divider" id="main-header">
+    <h1 id="title">Hello</h1>
+  </header>
+	
+	<nav>
+		<a href="">Home</a>
+		<a href="/favorites.html">Favorites</a>
+	</nav>
+
+  <main class="divider">
+    <div class="mission">
+      <p>
+        Our mission is to let you find Pokémon and add them to your favorites list. You can see how many others vote favorited a Pokémon in your list. 
+      </p>
+    </div>
+
+    <section id="pokemon">
+      <h2>Pokémon Search</h2>
+      <div>
+        <label>Search for a Pokémon using its Name or Id<br>
+          <input type="text" id="search" required placeholder="Name or Id#">
+        </label>
+        <button id="searchBtn">Search</button>
+        <p><i>The Ids for alternate forms/varieties start at 10001<br>Any errors about the Pokémon are from the API</i></p>
+      </div>
+      <div id="pokeInfo"></div>
+      <div class="grid"><button id="addToFavList">Favorite</button></div>
+    </section>
+
+    <section id="jokes">
+      <h2>Jokes</h2>
+      <div>
+        <p id="joke">A random joke will appear whenever a Pokémon is searched for.</p>
+      </div>
+    </section>
+
+    <div class="hidden">
+      <p>Click the button to get your coordinates.</p>
+      <button id="location">Try It</button>
+      <p id="demo"></p>
+    </div>
+
+    <div class="hidden">
+      <canvas id="tutorial" width="150" height="150"></canvas>
+    </div>
+	</main>
+  <footer id="footer"></footer>
+</body>
+</html>
