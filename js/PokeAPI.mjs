@@ -20,7 +20,7 @@ export default class Pokémon {
         pokeInfo.classList.remove("hidden");
 
         pokeInfo.innerHTML = `<figure>
-          <img src="${pokemon.sprites.front_default}" alt="The frontsprite of ${capFirst(pokemon.name)}">
+          <img src="${pokemon.sprites.front_default}" alt="The frontsprite of ${capFirst(pokemon.name)}" width="96" height="96">
           <figcaption>Pokémon: ${capFirst(pokemon.name)}</figcaption>
         </figure>
         <div>

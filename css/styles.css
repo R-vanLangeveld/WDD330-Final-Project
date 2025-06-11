@@ -104,6 +104,52 @@ figure {
 	width: 68px;
 }
 
+#jokes {
+	max-height: fit-content;
+}
+
+/* @keyframes reveal-jokes {
+	0% {
+		height: fit-content;
+	}
+	50% {
+		height: 400px;
+	}
+	100% {
+		height: fit-content;
+	}
+} */
+
+#jokeList {
+	display: grid;
+	grid-template-rows: 0fr;
+  transition: grid-template-rows 2s ease-out;
+}
+
+#joke {
+	display: none;
+	list-style: none;
+	margin-left: 0;
+	gap: 40px;
+}
+
+#joke li {
+	max-width: max-content;
+	margin: 0;
+}
+
+#jokeList.active {
+	grid-template-rows: auto;
+	height: min-content;
+}
+
+#joke.active {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
 #favoritesList {
 	margin: 0;
 	display: grid;
@@ -129,6 +175,10 @@ figure {
 
 .grid {
 	display: grid;
+}
+
+.favorited {
+	background-image: linear-gradient(90deg, #ff00eaad, #ff75f48e);
 }
 
 .hidden {

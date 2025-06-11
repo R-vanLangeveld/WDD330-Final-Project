@@ -1,7 +1,8 @@
-import { loadHeaderFooter, setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter, getLocalStorage, setLocalStorage, lastUpdate } from "./utils.mjs";
 import Pokémon from "./PokeAPI.mjs";
 import Jokes from "./JokesAPI.mjs";
 
+lastUpdate();
 // loadHeaderFooter();
 const pokeapi = new Pokémon();
 const jokes = new Jokes();
@@ -13,6 +14,7 @@ document.querySelector("#searchBtn").addEventListener("click", function() {
 	if (value !== "") {
 		const url = `https://pokeapi.co/api/v2/pokemon/${value}`;
 		pokeapi.getPokemon(url);
+    document.querySelector("#jokeInfo").classList.add("hidden");
     jokes.getJokes();
 	} else {
 		pokeapi.explainError();
@@ -20,6 +22,7 @@ document.querySelector("#searchBtn").addEventListener("click", function() {
 });
 
 document.querySelector("#addToFavList").addEventListener("click", function() {
+  document.querySelector("#addToFavList").classList.add("favorited");
   const favList = getLocalStorage("favList") || [];
   const pokemon = getLocalStorage("pokeInfo");
   let j = 0;

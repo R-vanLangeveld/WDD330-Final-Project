@@ -21,3 +21,8 @@ export async function loadHeaderFooter() {
 export function capFirst(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export function lastUpdate() {
+	currentyear.innerHTML = new Date().getFullYear();
+	lastModified.innerHTML = `Last Modification: ${document.lastModified}`;
+}
