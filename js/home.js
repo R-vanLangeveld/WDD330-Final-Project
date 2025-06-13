@@ -1,19 +1,22 @@
-import { loadHeaderFooter, getLocalStorage, setLocalStorage, lastUpdate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, lastUpdate } from "./utils.mjs";
 import Pokémon from "./PokeAPI.mjs";
 import Jokes from "./JokesAPI.mjs";
 
 lastUpdate();
-// loadHeaderFooter();
 const pokeapi = new Pokémon();
 const jokes = new Jokes();
 
 pokeapi.getPokemon("https://pokeapi.co/api/v2/pokemon/52");
+
+const addToFavs = document.querySelector("#addToFavList");
 
 document.querySelector("#searchBtn").addEventListener("click", function() {
 	const value = document.getElementById("search").value;
 	if (value !== "") {
 		const url = `https://pokeapi.co/api/v2/pokemon/${value}`;
 		pokeapi.getPokemon(url);
+    addToFavs.classList.remove("favorited");
+    addToFavs.textContent = "Add to Favorites";
     document.querySelector("#jokeInfo").classList.add("hidden");
     jokes.getJokes();
 	} else {
@@ -21,8 +24,10 @@ document.querySelector("#searchBtn").addEventListener("click", function() {
 	}
 });
 
-document.querySelector("#addToFavList").addEventListener("click", function() {
-  document.querySelector("#addToFavList").classList.add("favorited");
+addToFavs.addEventListener("click", function() {
+  addToFavs.classList.add("favorited");
+  addToFavs.textContent = "Favorited";
+  document.querySelector("figcaption").classList.add("favorited");
   const favList = getLocalStorage("favList") || [];
   const pokemon = getLocalStorage("pokeInfo");
   let j = 0;

@@ -3,11 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Favorites</title>
+	<!-- <title>Favorites</title> -->
+	<title>Favorites testing</title>
   <link rel="icon" href="favicon.ico">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2? family=Roboto&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-%21%22%23%25%27%29%2C%2F%3A%3B%3F%C2%A9%C3%A9%E2%80%93%E2%80%99.0123456789&family=Roboto+Slab&text=aeFiJkmnoPrstv%C3%A9&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2? family=Roboto&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-%21%22%23%24%25%27%29%2A%2C%2F%3A%3B%3D%3F%40%C2%A9%C3%A9%C3%B1%E2%80%93%E2%80%99.0123456789&family=Roboto+Slab&text=aeFiJkmnoPrstv%C3%A9&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/styles.css">
   <script type="module" src="js/favorites.js"></script>
 </head>
@@ -29,13 +30,14 @@
       <div id="favorites">
         <ul id="favoritesList"></ul>
       </div>
-      <div id="pokeInfo"></div>
+      <div id="pokeInfo" class="hidden"></div>
+      <div id="removeButton" class="grid hidden"><button id="removeFromFavList">Remove from favorites</button></div>
     </section>
 
     <section id="jokes">
       <h2>Jokes</h2>
       <div id="jokeList">
-        <ul id="joke">
+        <ul>
           <li id="joke1"></li>
           <li id="joke2"></li>
           <li id="joke3"></li>
@@ -45,7 +47,7 @@
 	</main>
 
   <footer>
-    <p>Ryndee van Langeveld &copy;<span id="currentyear"></span><br><span id="lastModified"></span></p>
+    <p>&copy;<span id="currentyear"></span> Ryndee van Langeveld<br><span id="lastModified"></span></p>
   </footer>
 </body>
 </html>

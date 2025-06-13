@@ -8,6 +8,7 @@ export default class Pokémon {
   async getPokemon(url) {
     const pokeInfo = document.querySelector("#pokeInfo");
     const response = await fetch(url);
+    explainText.classList.add("hidden");
 
     if (response.ok) {
       const pokemon = await response.json();
@@ -21,7 +22,7 @@ export default class Pokémon {
 
         pokeInfo.innerHTML = `<figure>
           <img src="${pokemon.sprites.front_default}" alt="The frontsprite of ${capFirst(pokemon.name)}" width="96" height="96">
-          <figcaption>Pokémon: ${capFirst(pokemon.name)}</figcaption>
+          <figcaption> Pokémon: ${capFirst(pokemon.name)} </figcaption>
         </figure>
         <div>
           <p>Species: ${capFirst(pokemon.species.name)}<br>
@@ -64,7 +65,7 @@ export default class Pokémon {
       }
     }
   }
-  
+
   showFavList() {
     const favList = getLocalStorage("favList") || [];
     favList.forEach((pokemon) => {
@@ -80,7 +81,6 @@ export default class Pokémon {
   }
 
   explainError() {
-    explainText.innerHTML = "Please enter a valid pokemon name or id number.<br>Example: 'pikachu' or '25'";
-    pokeInfo.classList.add("hidden");
+    explainText.classList.remove("hidden");
   }
 }

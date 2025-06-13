@@ -4,7 +4,7 @@ export default class Jokes {
   async getJokes() {
     const joke1 = await fetch("https://official-joke-api.appspot.com/random_joke");
     document.querySelector("#jokeList").classList.add("active");
-    document.querySelector("#joke").classList.add("active");
+    document.querySelector("#jokeList ul").classList.add("active");
     if (joke1.ok) {
       const data = await joke1.json();
       document.querySelector("#joke1").innerHTML = `${data.setup}<br>${data.punchline}`;

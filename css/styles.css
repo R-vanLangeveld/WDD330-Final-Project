@@ -43,6 +43,8 @@ nav a:visited {
 
 main {
 	margin: 1rem;
+	display: grid;
+	gap: 10px 20px;
 }
 
 header, h1, h2, h3 {
@@ -72,7 +74,6 @@ input {
 section {
 	overflow: hidden;
 	border-radius: 1rem;
-	margin-bottom: 20px;
 	border: var(--border);
 }
 
@@ -105,20 +106,8 @@ figure {
 }
 
 #jokes {
-	max-height: fit-content;
+	height: min-content;
 }
-
-/* @keyframes reveal-jokes {
-	0% {
-		height: fit-content;
-	}
-	50% {
-		height: 400px;
-	}
-	100% {
-		height: fit-content;
-	}
-} */
 
 #jokeList {
 	display: grid;
@@ -126,14 +115,14 @@ figure {
   transition: grid-template-rows 2s ease-out;
 }
 
-#joke {
+#jokeList ul {
 	display: none;
 	list-style: none;
 	margin-left: 0;
 	gap: 40px;
 }
 
-#joke li {
+#jokeList ul li {
 	max-width: max-content;
 	margin: 0;
 }
@@ -143,7 +132,7 @@ figure {
 	height: min-content;
 }
 
-#joke.active {
+#jokeList ul.active {
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
@@ -153,6 +142,7 @@ figure {
 #favoritesList {
 	margin: 0;
 	display: grid;
+	gap: 5px;
 	grid-template-columns: repeat(auto-fit, minmax(108px, 240px));
 }
 
@@ -169,6 +159,33 @@ figure {
 	grid-template-columns: repeat(auto-fit, minmax(108px, 193px));
 }
 
+#addToFavList.favorited {
+	animation: favorited 5s linear infinite;
+	background-color: #ff75f4;
+}
+
+figcaption.favorited::after, figcaption.favorited::before {
+	content: "⁂";
+	color: var(--accent-color);
+}
+
+@keyframes favorited {
+  0% {
+    background-color: #ff75f4;
+  }
+  50% {
+    background-color: #ff00ea;
+  }
+  100% {
+    background-color: #ff75f4;
+  }
+}
+
+li button {
+	margin: 0 5px;
+	grid-column: 1/3;
+}
+
 .mission {
 	margin: 0 0 10px 0;
 }
@@ -177,11 +194,7 @@ figure {
 	display: grid;
 }
 
-.favorited {
-	background-image: linear-gradient(90deg, #ff00eaad, #ff75f48e);
-}
-
-.hidden {
+.hidden, #pokeInfo.hidden {
 	display: none;
 }
 
@@ -192,24 +205,18 @@ figure {
 		grid-template-columns: repeat(2, minmax(158px, auto));
 	}
 
-	#varieties, #forms, #addToFavList, figure {
+	#varieties, #forms, figure {
 		grid-column: 1/3;
 	}
 }
 
 @media screen and (min-width: 586px) {
 	main {
-		display: grid;
-		gap: 10px 20px;
 		grid-template-columns: 2fr 1fr;
 	}
 
 	.mission {
 		grid-column: 1/3;
-	}
-
-	section {
-		margin: 0;
 	}
 
 	#pokeInfo {
@@ -220,11 +227,6 @@ figure {
 	#jokes {
 		top: 60px;
 		position: sticky;
-		max-height: min-content;
-	}
-
-	#varieties, #forms, #addToFavList {
-		grid-column: 1/3;
 	}
 }
 
