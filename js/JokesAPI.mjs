@@ -1,6 +1,7 @@
 export default class Jokes {
   constructor() {}
 
+  // gets three random jokes
   async getJokes() {
     const joke1 = await fetch("https://official-joke-api.appspot.com/random_joke");
     document.querySelector("#jokeList").classList.add("active");

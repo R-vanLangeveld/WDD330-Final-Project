@@ -1,8 +1,8 @@
-import { setLocalStorage, getLocalStorage, capFirst, lastUpdate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, capFirst, lastUpdate } from "./utils.mjs";
 import Pokémon from "./PokeAPI.mjs";
 import Jokes from "./JokesAPI.mjs";
 
-lastUpdate()
+lastUpdate();
 
 const pokeapi = new Pokémon();
 const jokes = new Jokes();
@@ -12,6 +12,7 @@ jokes.getJokes();
 const favoritesList = document.querySelector("#favoritesList");
 let pokeId = 0;
 
+// shows the list of favorited pokemon
 function showFavList() {
   favoritesList.innerHTML  = "";
   const favList = getLocalStorage("favList") || [];
@@ -60,15 +61,16 @@ function showFavList() {
   });
 }
 
-document.querySelector("#removeButton").addEventListener("click", function() {
-  const favList = getLocalStorage("favList") || [];
-  favList.forEach((pokemon) => {
-    if (pokemon.id == pokeId) {
-      removePokemon(favList);
-    }
-  });
-});
+// removes a pokemon from the favList
+function removePokemon(favList) {
+  const filteredList = favList.filter((pokemon) => pokemon.id != pokeId);
+  document.querySelector("#pokeInfo").classList.add("hidden");
+  document.querySelector("#removeButton").classList.add("hidden");
+  setLocalStorage("favList", filteredList);
+  showFavList();
+}
 
+// decreses the selected pokemon's .timesFaved
 function lowerCount(span, pokeId) {
   const favList = getLocalStorage("favList") || [];
   let i = 0;
@@ -98,12 +100,13 @@ function lowerCount(span, pokeId) {
   }
 }
 
-function removePokemon(favList) {
-  const filteredList = favList.filter((pokemon) => pokemon.id != pokeId);
-  document.querySelector("#pokeInfo").classList.add("hidden");
-  document.querySelector("#removeButton").classList.add("hidden");
-  setLocalStorage("favList", filteredList);
-  showFavList();
-}
+document.querySelector("#removeButton").addEventListener("click", function() {
+  const favList = getLocalStorage("favList") || [];
+  favList.forEach((pokemon) => {
+    if (pokemon.id == pokeId) {
+      removePokemon(favList);
+    }
+  });
+});
 
 showFavList();
