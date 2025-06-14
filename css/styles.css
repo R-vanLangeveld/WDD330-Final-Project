@@ -186,6 +186,11 @@ li button {
 	grid-column: 1/3;
 }
 
+.here::after, .here::before {
+	content: "◊";
+	color: #ffc145;
+}
+
 .mission {
 	margin: 0 0 10px 0;
 }
