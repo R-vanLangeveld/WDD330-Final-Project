@@ -37,6 +37,7 @@ addToFavs.addEventListener("click", function() {
   let itemIndex = 0;
   const array = {"timesFaved" : 1};
   const baseLength = favList.length;
+  
   if (baseLength !== 0) {
     do {
       for (let n = 0; n < favList.length; n++) {

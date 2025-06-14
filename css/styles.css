@@ -188,7 +188,7 @@ li button {
 
 .here::after, .here::before {
 	content: "◊";
-	color: #ffc145;
+	color: var(--accent-color);
 }
 
 .mission {

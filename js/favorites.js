@@ -3,7 +3,6 @@ import Pokémon from "./PokeAPI.mjs";
 import Jokes from "./JokesAPI.mjs";
 
 lastUpdate();
-
 const pokeapi = new Pokémon();
 const jokes = new Jokes();
 
