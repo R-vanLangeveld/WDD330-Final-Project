@@ -49,17 +49,41 @@ function showFavList(list) {
     p.addEventListener("click", function() {
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemon.id}`;
       pokeapi.getPokemon(url);
+      pokeId = pokemon.id;
       document.querySelector("#removeButton").classList.remove("hidden");
       jokes.getJokes();
     });
 
     decrease.addEventListener("click", function() {
-      setLocalStorage("pokeInfo", pokemon);
-      lowerCount(span);
+      let i = 0;
+      let correctMon = false;
+      let itemIndex = 0;
+      const baseLength = list.length;
+
+      if (baseLength !== 0) {
+        do {
+          for (let n = 0; n < baseLength; n++) {
+            if (pokemon.id === list[n].id) {
+              itemIndex = n;
+              correctMon = true;
+            }
+          }
+          i += 1;
+        } while (i <= baseLength - 1);
+
+        if (correctMon === true) {
+          list[itemIndex].timesFaved = list[itemIndex].timesFaved - 1;
+          span.innerText = `${list[itemIndex].timesFaved}`;
+          setLocalStorage("favList", list);
+        }
+        if (list[itemIndex].timesFaved <= 0) {
+          removePokemon(list);
+        }
+      }
+
     });
 
     increase.addEventListener("click", function() {
-      setLocalStorage("pokeInfo", pokemon);
       let j = 0;
       let correctMon = false;
       let itemIndex = 0;
@@ -67,7 +91,7 @@ function showFavList(list) {
 
       if (baseLength !== 0) {
         do {
-          for (let n = 0; n < list.length; n++) {
+          for (let n = 0; n < baseLength; n++) {
             if (pokemon.id === list[n].id) {
               itemIndex = n;
               correctMon = true;
@@ -95,6 +119,7 @@ function showFavList(list) {
 
 // removes a Pokémon from the favList
 function removePokemon(favList) {
+  console.log(pokeId)
   const filteredList = favList.filter((pokemon) => pokemon.id != pokeId);
   document.querySelector("#pokeInfo").classList.add("hidden");
   document.querySelector("#removeButton").classList.add("hidden");
@@ -102,35 +127,7 @@ function removePokemon(favList) {
   showFavList(filteredList);
 }
 
-// decreses the selected Pokémon's .timesFaved
-function lowerCount(span) {
-  const pokemon = getLocalStorage("pokeInfo");
-  let i = 0;
-  let itemIndex = 0;
-  let correctMon = false;
-  
-  do {
-    for (let n = 0; n < favList.length; n++) {
-      if (pokemon.id == favList[n].id) {
-        itemIndex = n;
-        correctMon = true;
-      }
-    }
-    i += 1;
-  } while (i <= favList.length - 1);
-
-  if (correctMon == true) {
-    favList[itemIndex].timesFaved -= 1;
-    span.innerText = `${favList[itemIndex].timesFaved}`;
-  }
-
-  if (favList[itemIndex].timesFaved <= 0) {
-    removePokemon(favList);
-  }
-}
-
 // switches the sprite between normal and shiny
-
 function shiny(img, pokeId) {
   let i = 0;
   let itemIndex = 0;
@@ -144,7 +141,6 @@ function shiny(img, pokeId) {
     }
     i += 1;
   } while (i <= favList.length - 1);
-
 
   if (correctMon == true) {
     img.classList.toggle("clicked");
@@ -160,7 +156,7 @@ function shiny(img, pokeId) {
       img.setAttribute("alt", `The frontsprite of ${capFirst(favList[itemIndex].name)}`);
     }
   }
-};
+}
 
 // sorts the displayed list by the Pokémon's id or timesFaved
 function sortBy(input) {
