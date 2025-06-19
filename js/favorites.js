@@ -119,7 +119,6 @@ function showFavList(list) {
 
 // removes a Pokémon from the favList
 function removePokemon(favList) {
-  console.log(pokeId)
   const filteredList = favList.filter((pokemon) => pokemon.id != pokeId);
   document.querySelector("#pokeInfo").classList.add("hidden");
   document.querySelector("#removeButton").classList.add("hidden");
