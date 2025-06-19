@@ -1,9 +1,9 @@
-import { capFirst, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, capFirst } from "./utils.mjs";
 
 export default class Pokémon {
   constructor() {}
 
-  // gets the data of a pokemon
+  // gets and displays the data of a Pokémon when called
   async getPokemon(url) {
     const pokeInfo = document.querySelector("#pokeInfo");
     const response = await fetch(url);
@@ -17,10 +17,11 @@ export default class Pokémon {
       if (response2.ok) {
         setLocalStorage("pokeInfo", pokemon);
         const species = await response2.json();
+        let timesClicked = -1;
         pokeInfo.classList.remove("hidden");
 
         pokeInfo.innerHTML = `<figure>
-          <img src="${pokemon.sprites.front_default}" alt="The frontsprite of ${capFirst(pokemon.name)}" width="96" height="96">
+          <img src="${pokemon.sprites.front_default}" alt="The frontsprite of ${capFirst(pokemon.name)}" width="96" height="96" class="clicked">
           <figcaption> Pokémon: ${capFirst(pokemon.name)} </figcaption>
         </figure>
         <div>
@@ -61,11 +62,29 @@ export default class Pokémon {
             formList.appendChild(li);
           });
         }
-      }
-    }
-  }
 
-  explainError() {
-    explainText.classList.remove("hidden");
+        // this needs to happen after the Pokémon's data is displayed
+        document.querySelector("figure").addEventListener("click", function() {
+          const figImg = document.querySelector("figure img");
+          figImg.classList.toggle("clicked");
+          const pokemon = getLocalStorage("pokeInfo");        timesClicked += 1;
+
+          if (timesClicked % 2 === 0) {
+            setTimeout(() => {figImg.classList.add("clicked");}, 1000);
+            figImg.setAttribute("src", pokemon.sprites.front_shiny);
+            figImg.setAttribute("alt", `The shiny frontsprite of ${capFirst(pokemon.name)}`);
+          } else {
+            setTimeout(() => {figImg.classList.add("clicked");}, 1000);
+            figImg.setAttribute("src", pokemon.sprites.front_default);
+            figImg.setAttribute("alt", `The frontsprite of ${capFirst(pokemon.name)}`);
+          }
+        });
+
+      } else {
+        explainText.classList.remove("hidden");
+      }
+    } else {
+      explainText.classList.remove("hidden");
+    }
   }
 }

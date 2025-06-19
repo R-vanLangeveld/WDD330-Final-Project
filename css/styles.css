@@ -57,11 +57,12 @@ h2, h3 {
 }
 
 button, input {
-	height: 26px;
+	padding: 5px;
+	height: 36px;
 	color: #000;
 	font-size: 1.2em;
 	border-radius: 0.5rem;
-	background-color: #f0f0f0;
+	background-color: #eee;
 	border-color: var(--accent-color);
 }
 
@@ -69,6 +70,10 @@ input {
 	width: 100%;
 	max-width: 245px;
 	font-size: 1.2em;
+}
+
+button {
+	min-width: 76px;
 }
 
 section {
@@ -101,42 +106,27 @@ figure {
 	flex-direction: column;
 }
 
-#searchBtn {
-	width: 68px;
-}
-
 #jokes {
 	height: min-content;
 }
 
 #jokeList {
 	display: grid;
+	gap: 40px;
+	height: 0;
+	margin: 0;
 	grid-template-rows: 0fr;
   transition: grid-template-rows 2s ease-out;
-}
-
-#jokeList ul {
-	display: none;
-	list-style: none;
-	margin-left: 0;
-	gap: 40px;
-}
-
-#jokeList ul li {
-	max-width: max-content;
-	margin: 0;
 }
 
 #jokeList.active {
 	grid-template-rows: auto;
 	height: min-content;
+	margin: 10px;
 }
 
-#jokeList ul.active {
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+#jokeInfo {
+	margin: 10px;
 }
 
 #favoritesList {
@@ -181,8 +171,20 @@ figcaption.favorited::after, figcaption.favorited::before {
   }
 }
 
+.clicked {
+	animation: pokemon 2s linear 5;
+}
+
+@keyframes pokemon {
+  0% {rotate: 0deg;}
+	25% {rotate: -15deg;}
+  50% {rotate: 15deg;}
+  75% {rotate: 0deg;}
+  100% {rotate: 0deg;}
+}
+
 li button {
-	margin: 0 5px;
+	margin: 5px;
 	grid-column: 1/3;
 }
 

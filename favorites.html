@@ -25,8 +25,17 @@
 	</nav>
 
   <main>
+    <div class="mission">
+      <p>When you click on one of the Pokémon, its info will appear at the bottom of the page. Clicking the Pokémon's sprite will also change it from normal to shiny and vice versa.</p>
+    </div>
     <section id="pokemon">
       <h2>Favorite Pokémon</h2>
+      <div>
+        <label>Sort your list by typing "timesFaved" or "id"<br>
+          <input type="text" id="sort" required placeholder="timesFaved or id">
+        </label>
+        <button id="sortBtn">Sort</button>
+      </div>
       <div id="favorites">
         <ul id="favoritesList"></ul>
       </div>
@@ -38,11 +47,9 @@
     <section id="jokes">
       <h2>Jokes</h2>
       <div id="jokeList">
-        <ul>
-          <li id="joke1"></li>
-          <li id="joke2"></li>
-          <li id="joke3"></li>
-        </ul>
+        <p id="joke1"></p>
+        <p id="joke2"></p>
+        <p id="joke3"></p>
       </div>
     </section>
 	</main>

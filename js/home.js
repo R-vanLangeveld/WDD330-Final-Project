@@ -21,7 +21,7 @@ document.querySelector("#searchBtn").addEventListener("click", function() {
     document.querySelector("#jokeInfo").classList.add("hidden");
     jokes.getJokes();
 	} else {
-		pokeapi.explainError();
+		explainText.classList.remove("hidden");
 	}
 });
 
@@ -35,7 +35,7 @@ addToFavs.addEventListener("click", function() {
   let j = 0;
   let inList = false;
   let itemIndex = 0;
-  const array = {"timesFaved" : 1};
+  const array = {"timesClicked" : -1, "timesFaved" : 1};
   const baseLength = favList.length;
   
   if (baseLength !== 0) {
